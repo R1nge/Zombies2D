@@ -1,3 +1,10 @@
+using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using VContainer.Unity;
+
 public class SceneSerivce : IInitializable
 {
     private Dictionary<SceneType, string> _scenes;
@@ -21,7 +28,7 @@ public class SceneSerivce : IInitializable
         _currentScene = SceneType.Boot;
     }
     
-    public void LoadScene(SceneType sceneType, LoadingMode loadingMode)
+    public void LoadScene(SceneType sceneType, LoadSceneMode loadingMode)
     {
         if (_loadedScenes.Contains(sceneType))
         {
@@ -34,7 +41,7 @@ public class SceneSerivce : IInitializable
         SceneManager.LoadScene(_scenes[sceneType], loadingMode);
     }
     
-    public async UniTask LoadSceneAsync(SceneType sceneType, LoadingMode loadingMode)
+    public async UniTask LoadSceneAsync(SceneType sceneType, LoadSceneMode loadingMode)
     {
         if (_loadedScenes.Contains(sceneType))
         {

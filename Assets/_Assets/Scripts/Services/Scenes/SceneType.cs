@@ -1,4 +1,4 @@
-public struct SceneType : byte
+public enum SceneType : byte
 {
     Boot,
     Main
