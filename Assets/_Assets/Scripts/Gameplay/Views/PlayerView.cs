@@ -1,4 +1,5 @@
-﻿using _Assets.Scripts.Gameplay.Controllers;
+﻿using System;
+using _Assets.Scripts.Gameplay.Controllers;
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,6 +41,12 @@ namespace _Assets.Scripts.Gameplay.Views
             var worldPosition = Camera.main.ScreenToWorldPoint(position);
             worldPosition.z = 0;
             _playerController.MoveTo(worldPosition);
+        }
+
+        private void OnDestroy()
+        {
+            _moveAction.performed -= MoveTo;
+            _game?.Dispose();
         }
     }
 }
