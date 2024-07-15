@@ -12,9 +12,12 @@ namespace _Assets.Scripts.Gameplay.Views
         private PlayerController _playerController;
         private InputAction _setDestinationAction;
         private InputAction _moveToDestinationAction;
+        private Camera _playerCamera;
 
         private void Awake()
         {
+            _playerCamera = Camera.main;
+
             _playerController = new PlayerController(aiPath, transform);
 
             _game = new Game();
@@ -46,7 +49,7 @@ namespace _Assets.Scripts.Gameplay.Views
         private void SetDestination(Vector3 position)
         {
             position.z = 10;
-            var worldPosition = Camera.main.ScreenToWorldPoint(position);
+            var worldPosition = _playerCamera.ScreenToWorldPoint(position);
             worldPosition.z = 0;
             _playerController.SetDestination(worldPosition);
         }
