@@ -23,11 +23,22 @@ namespace _Assets.Scripts.Gameplay.Controllers
             _playerModel.positionX = _transform.position.x;
             _playerModel.positionY = _transform.position.y;
         }
-        
-        public void MoveTo(Vector3 position)
+
+        public void MoveToDestination()
         {
-            //Debug.LogError("Move to");
-            _aiPath.destination = position;
+            _aiPath.isStopped = false;
+            _aiPath.destination = new Vector3(_playerModel.destinationX, _playerModel.destinationY, 0);
+        }
+
+        public void Stop()
+        {
+            _aiPath.isStopped = true;
+        }
+        
+        public void SetDestination(Vector2 position)
+        {
+            _playerModel.destinationX = position.x;
+            _playerModel.destinationY = position.y;
         }
     }
 }

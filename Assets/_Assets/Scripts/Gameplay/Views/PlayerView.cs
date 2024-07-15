@@ -9,10 +9,11 @@ namespace _Assets.Scripts.Gameplay.Views
 {
     public class PlayerView : MonoBehaviour
     {
-        private Game _game;
         [SerializeField] private AIPath aiPath;
+        private Game _game;
         private PlayerController _playerController;
-        private InputAction _moveAction;
+        private InputAction _setDestinationAction;
+        private InputAction _moveToDestinationAction;
 
         private void Awake()
         {
@@ -20,14 +21,23 @@ namespace _Assets.Scripts.Gameplay.Views
 
             _game = new Game();
             _game.Enable();
-            _moveAction = _game.FindAction("Move");
-            _moveAction.performed += MoveTo;
+
+            _setDestinationAction = _game.FindAction("SetDestination");
+            _setDestinationAction.performed += SetDestination;
+
+            _moveToDestinationAction = _game.FindAction("MoveToDestination");
+            _moveToDestinationAction.performed += MoveToDestination;
         }
 
-        private void MoveTo(InputAction.CallbackContext callback)
+        private void MoveToDestination(InputAction.CallbackContext callback)
         {
-            var position = _moveAction.ReadValue<Vector2>();
-            MoveTo(new Vector3(position.x, position.y, 0));
+            _playerController.MoveToDestination();
+        }
+
+        private void SetDestination(InputAction.CallbackContext callback)
+        {
+            var position = _setDestinationAction.ReadValue<Vector2>();
+            SetDestination(position);
         }
 
         private void Update()
@@ -35,17 +45,18 @@ namespace _Assets.Scripts.Gameplay.Views
             _playerController.UpdateModel();
         }
 
-        private void MoveTo(Vector3 position)
+        private void SetDestination(Vector3 position)
         {
             position.z = 10;
             var worldPosition = Camera.main.ScreenToWorldPoint(position);
             worldPosition.z = 0;
-            _playerController.MoveTo(worldPosition);
+            _playerController.SetDestination(worldPosition);
         }
 
         private void OnDestroy()
         {
-            _moveAction.performed -= MoveTo;
+            _setDestinationAction.performed -= SetDestination;
+            _moveToDestinationAction.performed -= MoveToDestination;
             _game?.Dispose();
         }
     }

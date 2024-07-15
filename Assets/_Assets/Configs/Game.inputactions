@@ -1,18 +1,27 @@
 {
-    "name": "Player",
+    "name": "Game",
     "maps": [
         {
             "name": "Player",
             "id": "cb16b051-11bd-476d-8939-931150f65bce",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "SetDestination",
                     "type": "Value",
                     "id": "7ddacec1-a6e6-42cf-a3f8-fa378001c5a8",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "MoveToDestination",
+                    "type": "Button",
+                    "id": "beb0ae6c-a5d5-4117-99bd-ef25dd8d6b31",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -23,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player",
-                    "action": "Move",
+                    "action": "SetDestination",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -34,7 +43,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Player",
-                    "action": "Move",
+                    "action": "SetDestination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f286560b-5736-46ad-83ef-6dafa23a05b3",
+                    "path": "<Touchscreen>/{PrimaryAction}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToDestination",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5843b225-c4ce-4b74-9a1a-f516bb4d009a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveToDestination",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
