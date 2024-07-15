@@ -2,6 +2,7 @@
 using Pathfinding;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Object = UnityEngine.Object;
 
 namespace _Assets.Scripts.Gameplay.Views
 {
@@ -52,6 +53,15 @@ namespace _Assets.Scripts.Gameplay.Views
             var worldPosition = _playerCamera.ScreenToWorldPoint(position);
             worldPosition.z = 0;
             _playerController.SetDestination(worldPosition);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.transform.TryGetComponent(out CivilianView _))
+            {
+                _playerController.Stop();
+                Destroy(other.gameObject);
+            } 
         }
 
         private void OnDestroy()
