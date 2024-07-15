@@ -1,7 +1,6 @@
 ﻿using _Assets.Scripts.Gameplay.Models;
 using Pathfinding;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace _Assets.Scripts.Gameplay.Controllers
 {

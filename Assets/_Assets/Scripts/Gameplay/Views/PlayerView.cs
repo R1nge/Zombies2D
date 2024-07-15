@@ -1,8 +1,6 @@
-﻿using System;
-using _Assets.Scripts.Gameplay.Controllers;
+﻿using _Assets.Scripts.Gameplay.Controllers;
 using Pathfinding;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace _Assets.Scripts.Gameplay.Views
